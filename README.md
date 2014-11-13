@@ -39,10 +39,7 @@ on ubuntu, make sure ruby 1.9.x is installed.
 ###getting started
 
 ```
-wget https://forgeapi.puppetlabs.com/v3/files/markb-docker_registry-0.2.0.tar.gz
-
-puppet module install markb-docker_registry-0.2.0.tar.gz
-
+puppet module install markb-docker_registry
 puppet apply -e 'include docker_registry'
 ```
 
