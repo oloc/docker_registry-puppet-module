@@ -76,6 +76,4 @@ This module will only work for Debian and Rel variants.  It's only been tesed on
 
 ##Development
 
-Contributions are - very - welcome at:
-git@github.com:mwbutcher/docker_registry-puppet-module.git
-Thanks in advance!
+Contributions are - very - welcome.  Thanks in advance!

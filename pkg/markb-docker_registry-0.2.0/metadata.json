@@ -1,0 +1,37 @@
+{
+  "name": "markb-docker_registry",
+  "version": "0.2.0",
+  "source": "UNKNOWN",
+  "author": "Mark Butcher",
+  "license": "Apache License, Version 2.0",
+  "summary": "UNKNOWN",
+  "description": "deploy a docker registry server",
+  "project_page": "UNKNOWN",
+  "dependencies": [
+    {
+      "name": "stahnma/epel",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.7.0"
+    },
+    {
+      "name": "stankevich/python",
+      "version_requirement": ">= 1.7.15"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "127d14129f6596f11292ab1e44a8e8b9",
+    "README.md": "18f2dafb7a95b3f9a3eabb83a6717219",
+    "manifests/init.pp": "b0b52dd4795df79cf0fede8f33c9684b",
+    "manifests/repos.pp": "ddbd06bfe8c15d489f71dea2f5eeb844",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "templates/docker_registry_config.erb": "1bc6033352cd37e188f089e61efa45d0",
+    "templates/docker_registry_init.erb": "2abf1f37a91861f5788bd78d00118e61",
+    "tests/init.pp": "f6457092a1eeafb4a756d6e44556edb7"
+  }
+}
