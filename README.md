@@ -23,6 +23,7 @@ Docker is an open platform for developers and sysadmins to build, ship, and run 
 
 The Docker registry offers some of the same functionality as the Docker Hub.  It can be installed and administered privately where business, network, and other concerns prohibit the use of a third party hub.
 
+Please note that the deployed registry will be insecure.
 
 ##Setup
 
@@ -37,15 +38,33 @@ on ubuntu, make sure ruby 1.9.x is installed.
 
 ###getting started
 
-wget https://forgeapi.puppetlabs.com/v3/files/markb-docker_registry-**version**.tar.gz
+```
+wget https://forgeapi.puppetlabs.com/v3/files/markb-docker_registry-0.2.0.tar.gz
 
-puppet module install markb-docker_registry-**version**.tar.gz
+puppet module install markb-docker_registry-0.2.0.tar.gz
 
 puppet apply -e 'include docker_registry'
+```
+
+
+you'll want to stop the docker service and start a daemon with the insecure flag:
+```
+docker -d --insecure-registry localhost:5000
+```
+
+then you can use the following to see that the registry is working:
+```
+docker search tutorial
+docker pull learn/tutorial
+docker run learn/tutorial apt-get install -y ping
+docker ps -a
+docker commit <hash from last command> localhost:5000/tutorialWithPing
+docker push localhost:5000/tutorialWithPing
+```
 
 ##Usage
 
-include docker_repository
+include docker_registry
 
 ##Reference
 
