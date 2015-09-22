@@ -2,22 +2,8 @@ class docker_registry::repos {
 
   case $::osfamily {
     debian: {
-      class { 'apt':
-        always_apt_update    => true,
-        apt_update_frequency => undef,
-        disable_keys         => undef,
-        proxy_host           => false,
-        proxy_port           => false,
-        purge_sources_list   => false,
-        purge_sources_list_d => false,
-        purge_preferences_d  => false,
-        update_timeout       => undef,
-        fancy_progress       => true
-      }
-
-
-      class { 'apt::release':
-        release_id => '',
+      if !defined(Class['apt']) {
+        class { 'apt': }
       }  
 
       apt::source { 'docker':
