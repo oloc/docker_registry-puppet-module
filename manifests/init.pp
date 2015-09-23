@@ -81,7 +81,7 @@ class docker_registry {
       # install packages
       $rel_packages = ['docker-io', 'docker-registry']
       package { $rel_packages:
-        ensure => installed,
+        ensure  => installed,
         require => Class['docker_registry::repos'],
       }
       
