@@ -1,4 +1,9 @@
+![Build Status](https://travis-ci.org/oloc/docker_registry-puppet-module.png)](https://travis-ci.org/oloc/docker_registry-puppet-module)
+
 #docker_registry
+
+This is a fork of the initial project:
+ https://github.com/mwbutcher/docker_registry-puppet-module
 
 ####Table of Contents
 
@@ -61,7 +66,9 @@ docker push localhost:5000/tutorialWithPing
 
 ##Usage
 
-include docker_registry
+```
+  class { 'docker_registry':}
+```
 
 ##Reference
 
