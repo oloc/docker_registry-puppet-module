@@ -13,7 +13,7 @@ class docker_registry::repos {
 
       apt::source { 'docker':
         location    => 'https://get.docker.io/ubuntu',
-        release     => 'docker'
+        release     => 'docker',
         repos       => 'main',
         key         => '36A1D7869245C8950F966E92D8576A8BA88D21E9',
         key_server  => 'keyserver.ubuntu.com',
