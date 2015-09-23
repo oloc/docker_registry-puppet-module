@@ -26,12 +26,12 @@ class docker_registry::repos {
         release     => '',
         key         => 'A88D21E9',
         key_server  => 'keyserver.ubuntu.com',
-     }
+      }
 
-     file { '/sbin/insserv':
-       ensure => 'link',
-       target => '/usr/lib/insserv/insserv',
-     }
+      file { '/sbin/insserv':
+        ensure => 'link',
+        target => '/usr/lib/insserv/insserv',
+      }
 
     }
     redhat: {
