@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/oloc/docker_registry-puppet-module.png)](https://travis-ci.org/oloc/docker_registry-puppet-module)
+[![Build Status](https://travis-ci.org/oloc/docker_registry-puppet-module.png)](https://travis-ci.org/oloc/docker_registry-puppet-module)
 
 #docker_registry
 
