@@ -69,7 +69,7 @@ class docker_registry {
 
       # start the upstart service 
       service { 'docker_registry':
-        ensure  => 'running',
+        ensure  => running,
         require => File['/etc/init/docker_registry.conf'],
       }
 

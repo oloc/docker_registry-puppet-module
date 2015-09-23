@@ -1,9 +1,11 @@
 [![Build Status](https://travis-ci.org/oloc/puppet-docker_registry.png)](https://travis-ci.org/oloc/puppet-docker_registry)
 
-#docker_registry
+#docker registry 1.0
 
 This is a fork of the initial project:
  https://github.com/mwbutcher/docker_registry-puppet-module
+
+Due to an upgrade to [docker registry 2.0](https://docs.docker.com/registry/), this module is obsolete.
 
 ####Table of Contents
 
