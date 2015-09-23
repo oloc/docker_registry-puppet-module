@@ -16,13 +16,7 @@
 #
 class docker_registry {
 
-  stage { 'pre':
-    before => Stage['main'],
-  }
-
-  class { 'docker_registry::repos':
-    stage => 'pre',
-  }
+  class {'docker_registry::repos':}
 
   case $::osfamily {
 
@@ -31,7 +25,8 @@ class docker_registry {
       #  note: python-pip and python-dev are also required, but they'll be installed by the python module
       $deb_packages = ['build-essential','libevent-dev','liblzma-dev','lxc-docker']
       package { $deb_packages:
-        ensure => installed,
+        ensure  => installed,
+        require => Class['docker_registry::repos'],
       }
 
       class { 'python' :
@@ -87,6 +82,7 @@ class docker_registry {
       $rel_packages = ['docker-io', 'docker-registry']
       package { $rel_packages:
         ensure => installed,
+        require => Class['docker_registry::repos'],
       }
       
       # start services
