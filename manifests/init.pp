@@ -29,12 +29,12 @@ class docker_registry {
     debian: {
       # install packages 
       #  note: python-pip and python-dev are also required, but they'll be installed by the python module
-      $deb_packages = ['build-essential','libevent-dev','liblzma-dev','lxc-docker'] 
+      $deb_packages = ['build-essential','libevent-dev','liblzma-dev','lxc-docker']
       package { $deb_packages:
         ensure => installed,
-      } 
+      }
 
-      class { 'python' :
+      class { 'python':
         version    => 'system',
         pip        => true,
         dev        => true,
@@ -42,7 +42,7 @@ class docker_registry {
         gunicorn   => true,
       }
 
-      python::pip { 'docker-registry' :
+      python::pip { 'docker-registry':
         pkgname => 'docker-registry',
         before  => Service['docker_registry'],
       }
@@ -54,8 +54,8 @@ class docker_registry {
 
       # create config file
       file { '/etc/docker_registry/config.yml':
-        replace => 'no',
         ensure  => present,
+        replace => 'no',
         content => template('docker_registry/docker_registry_config.erb'),
         mode    => '0644',
       }
@@ -66,7 +66,7 @@ class docker_registry {
       }
 
       # upstart conf
-      file { '/etc/init/docker_registry.conf': 
+      file { '/etc/init/docker_registry.conf':
         ensure  => present,
         content => template('docker_registry/docker_registry_init.erb'),
         mode    => '0644',

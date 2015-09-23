@@ -17,7 +17,7 @@ class docker_registry::repos {
 
       class { 'apt::release':
         release_id => '',
-      }  
+      }
 
       apt::source { 'docker':
         location    => 'https://get.docker.com/ubuntu',
@@ -28,14 +28,14 @@ class docker_registry::repos {
         key_server  => 'keyserver.ubuntu.com',
      }
 
-     file { '/sbin/insserv' : 
+     file { '/sbin/insserv':
        ensure => 'link',
        target => '/usr/lib/insserv/insserv',
-     } 
+     }
 
     }
     redhat: {
-      include epel 
+      include epel
     }
     default: {
       case $::operatingsystem {
