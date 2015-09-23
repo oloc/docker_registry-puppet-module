@@ -15,26 +15,23 @@ class docker_registry::repos {
         fancy_progress       => true
       }
 
-
       class { 'apt::release':
         release_id => '',
       }  
 
       apt::source { 'docker':
-        location   => 'https://get.docker.com/ubuntu',
+        location    => 'https://get.docker.com/ubuntu',
         include_src => false,
-        repos      => 'docker main',
-        release => '',
-        key               => 'A88D21E9',
-        key_server        => 'keyserver.ubuntu.com',
+        repos       => 'docker main',
+        release     => '',
+        key         => 'A88D21E9',
+        key_server  => 'keyserver.ubuntu.com',
      }
 
      file { '/sbin/insserv' : 
        ensure => 'link',
        target => '/usr/lib/insserv/insserv',
      } 
-
-
 
     }
     redhat: {
