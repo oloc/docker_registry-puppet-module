@@ -14,28 +14,24 @@
 #
 # Copyright 2014 Mark Butcher, unless otherwise noted.
 #
-
-
-
 class docker_registry {
 
   stage { 'pre':
-    before => Stage["main"],
+    before => Stage['main'],
   }
 
   class { 'docker_registry::repos':
-    stage => 'pre'
+    stage => 'pre',
   }
 
   case $::osfamily {
 
     debian: {
-
       # install packages 
       #  note: python-pip and python-dev are also required, but they'll be installed by the python module
-      $debPackages = ["build-essential","libevent-dev","liblzma-dev","lxc-docker"] 
-      package { $debPackages:
-        ensure => "installed"
+      $deb_packages = ['build-essential','libevent-dev','liblzma-dev','lxc-docker'] 
+      package { $deb_packages:
+        ensure => installed,
       } 
 
       class { 'python' :
@@ -47,40 +43,39 @@ class docker_registry {
       }
 
       python::pip { 'docker-registry' :
-        pkgname       => 'docker-registry',
-        before   => Service['docker_registry'],
+        pkgname => 'docker-registry',
+        before  => Service['docker_registry'],
       }
 
       # create config dir
-      file { "/etc/docker_registry":
-        ensure => "directory",
+      file { '/etc/docker_registry':
+        ensure => directory,
       }
 
       # create config file
       file { '/etc/docker_registry/config.yml':
-        replace => "no",
-        ensure => present,
+        replace => 'no',
+        ensure  => present,
         content => template('docker_registry/docker_registry_config.erb'),
-        mode   =>  0644,
+        mode    => '0644',
       }
 
       # create log dir
-      file { "/var/log/docker_registry":
-        ensure => "directory",
+      file { '/var/log/docker_registry':
+        ensure => directory,
       }
 
       # upstart conf
       file { '/etc/init/docker_registry.conf': 
-        ensure => present,
+        ensure  => present,
         content => template('docker_registry/docker_registry_init.erb'),
-        mode   =>  0644,
+        mode    => '0644',
       }
 
       # start the upstart service 
-      service { "docker_registry":
-        ensure => "running",
+      service { 'docker_registry':
+        ensure  => 'running',
         require => File['/etc/init/docker_registry.conf'],
-
       }
 
     }
@@ -89,20 +84,19 @@ class docker_registry {
     redhat: {
 
       # install packages
-      $relPackages = ["docker-io", "docker-registry"]
-      package { $relPackages:
-        ensure => "installed",
+      $rel_packages = ['docker-io', 'docker-registry']
+      package { $rel_packages:
+        ensure => installed,
       }
       
       # start services
-      service { "docker":
-        ensure => "running",
+      service { 'docker':
+        ensure => running,
       }
-      service { "docker-registry":
-        ensure => "running",
+      service { 'docker-registry':
+        ensure => running,
       }
     }
-
 
     default: {
       case $::operatingsystem {

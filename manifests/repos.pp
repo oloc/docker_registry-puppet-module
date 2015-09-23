@@ -20,8 +20,6 @@ class docker_registry::repos {
        target => '/usr/lib/insserv/insserv',
      } 
 
-
-
     }
     redhat: {
       include epel 
